@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SendEmailJob;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +16,7 @@ class TransactionController extends Controller
     /**
      * Transfer value between two users
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function transaction(Request $request): Response
@@ -65,7 +65,7 @@ class TransactionController extends Controller
                 $emailResponse = Http::get('http://o4d9z.mocklab.io/notify');
 
                 if ($emailResponse->json()['message'] !== 'Success') {
-                    throw new \Exception('Timeout to send email.', 408);
+                    throw new Exception('Timeout to send email.', 408);
                 }
             });
 
