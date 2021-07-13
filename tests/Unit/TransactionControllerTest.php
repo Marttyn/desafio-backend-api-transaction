@@ -34,7 +34,7 @@ class TransactionControllerTest extends TestCase
     private $payee;
 
     /**
-     * A basic unit test example.
+     * Unit test for transaction method
      *
      * @return void
      */
@@ -67,6 +67,9 @@ class TransactionControllerTest extends TestCase
         $this->testClass->transaction($request);
     }
 
+    /**
+     * Setup method
+     */
     protected function setUp(): void
     {
         $this->user = $this->getMockBuilder(User::class)
